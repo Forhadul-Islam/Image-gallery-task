@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { AiFillCheckSquare } from "react-icons/ai";
-import { IMAGES_DELETED } from "../../context/actionTypes";
+import { imagesDeleted } from "../../helpers/actions";
 import { useGalleryContext } from "../../hooks/useGalleryContext";
 
 const Navbar = ({ selectedfiles }) => {
@@ -8,9 +8,7 @@ const Navbar = ({ selectedfiles }) => {
 
   //handle delete selected items
   const handleDelete = () => {
-    dispatch({
-      type: IMAGES_DELETED,
-    })
+    dispatch(imagesDeleted())
   }
   return (
     <div className="container-x py-3 h-14 border-b border-gray-400 shadow-sm">
@@ -28,7 +26,7 @@ const Navbar = ({ selectedfiles }) => {
           </h2>
         )}
         {selectedfiles > 0 && (
-          <p onClick={handleDelete} className="text-red-700 hover:text-red-600 text-xl font-medium cursor-pointer">Delte files</p>
+          <p onClick={handleDelete} className="text-red-700 hover:text-red-600 text-xl font-medium cursor-pointer">Delete files</p>
         )}
       </div>
     </div>

@@ -13,7 +13,7 @@ import {
 } from "@dnd-kit/sortable";
 import { useEffect, useState } from "react";
 import { imagesData } from "../../constants";
-import { DND_UPDATE_IMAGES } from "../../context/actionTypes";
+import { imagesSorted } from "../../helpers/actions";
 import { useGalleryContext } from "../../hooks/useGalleryContext";
 import Grid from "../ui/Grid";
 import AddImages from "./AddImages";
@@ -46,16 +46,13 @@ const ImageGallery = () => {
       let oldIndex;
       let newIndex;
       setItems((items) => {
-         oldIndex = items.findIndex((item) => item.id === active.id);
-         newIndex = items.findIndex((item) => item.id === over.id);
+        oldIndex = items.findIndex((item) => item.id === active.id);
+        newIndex = items.findIndex((item) => item.id === over.id);
         return arrayMove(items, oldIndex, newIndex);
       });
 
       //Update the central state,
-      dispatch({
-        type: DND_UPDATE_IMAGES,
-        payload: arrayMove(items, oldIndex, newIndex)
-      })
+      dispatch(imagesSorted(arrayMove(items, oldIndex, newIndex)));
     }
     setActiveId(null);
   }
@@ -89,11 +86,11 @@ const ImageGallery = () => {
       <DragOverlay adjustScale={true}>
         {activeId ? (
           <GridCard
-              key={items.find((i) => i.id === activeId)?.id}
-              image={items.find((i) => i.id === activeId)}
-              url={items.find((i) => i.id === activeId)?.url}
-              index={items.findIndex((item) => item.id === activeId)}
-            />
+            key={items.find((i) => i.id === activeId)?.id}
+            image={items.find((i) => i.id === activeId)}
+            url={items.find((i) => i.id === activeId)?.url}
+            index={items.findIndex((item) => item.id === activeId)}
+          />
         ) : null}
       </DragOverlay>
     </DndContext>

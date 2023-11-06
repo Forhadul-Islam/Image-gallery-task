@@ -3,7 +3,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import { forwardRef } from "react";
-import { TOGGLE_SELECT_IMAGE } from "../../context/actionTypes";
+import { toggleSelectImage } from "../../helpers/actions";
 import { useGalleryContext } from "../../hooks/useGalleryContext";
 import Checkbosx from "../ui/Checkbosx";
 
@@ -31,7 +31,7 @@ export const GridCardItem = forwardRef(
 
     const handleSelect = (e) => {
       e.stopPropagation();
-      dispatch({ type: TOGGLE_SELECT_IMAGE, payload: image });
+      dispatch(toggleSelectImage(image));
     };
 
     return (
@@ -53,7 +53,7 @@ export const GridCardItem = forwardRef(
             className={`${
               isSelected
                 ? " opacity-60 bg-black/30"
-                : " group-hover:scale-100 group-hover:opacity-100 bg-black/20"
+                : " group-hover:scale-100 group-hover:opacity-100 bg-black/40"
             } inset-0 absolute  opacity-0 scale-100 transition-all duration-300 ease-out z-40`}
           />
           <div className="absolute  top-0 left-0 z-50">
