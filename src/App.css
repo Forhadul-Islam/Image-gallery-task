@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.app-container {
+  @apply p-3 bg-gray-200 min-h-screen;
+}
+
+.container {
+  @apply bg-white min-h-screen w-full rounded-md mx-auto pb-5;
+}
+
+.container-x {
+  @apply px-10;
+}
