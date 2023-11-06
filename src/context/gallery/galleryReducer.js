@@ -48,7 +48,7 @@ export const galleryReducer = (state = initialState, action) => {
     case DND_UPDATE_IMAGES:
       return {
         ...state,
-        images: action.payload,
+        images: [...action.payload],
       };
 
     default:

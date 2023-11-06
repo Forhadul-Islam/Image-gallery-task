@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { TOGGLE_SELECT_IMAGE } from "../../context/actionTypes";
 import { useGalleryContext } from "../../hooks/useGalleryContext";
 import Checkbosx from "../ui/Checkbosx";
@@ -18,22 +19,18 @@ export const GridCardItem = forwardRef(
       gridColumnStart: index === 0 ? "span 2" : null,
       backgroundSize: "cover",
       backgroundPosition: "center",
-      // border: "1px solid gray",
       ...style,
     };
 
-    const [selected, setSelected] = useState(false);
     const { state, dispatch } = useGalleryContext();
-    // const {attributes, listeners, setNodeRef}  = useDraggable({id:"checkbox-disable"})
+
+    //find is image selected or not
     const isSelected = state.selectedImages
       ?.map((file) => file.id)
       .includes(image?.id);
 
     const handleSelect = (e) => {
       e.stopPropagation();
-
-      console.log(e);
-      setSelected((pre) => !pre);
       dispatch({ type: TOGGLE_SELECT_IMAGE, payload: image });
     };
 
@@ -60,14 +57,12 @@ export const GridCardItem = forwardRef(
             } inset-0 absolute  opacity-0 scale-100 transition-all duration-300 ease-out z-40`}
           />
           <div className="absolute  top-0 left-0 z-50">
-            
-          <Checkbosx
+            <Checkbosx
               className=""
               selected={isSelected}
               handleSelect={handleSelect}
             />
           </div>
-            
         </div>
       </div>
     );

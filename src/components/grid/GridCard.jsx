@@ -3,7 +3,6 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { GridCardItem } from "./GridCardItem";
 
-// import { Image } from "./Image";
 
 export const GridCard = (props) => {
   const {
